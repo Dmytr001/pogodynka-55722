@@ -1,0 +1,33 @@
+App\Entity\Location:
+    properties:
+        name:
+            - NotBlank: { message: 'Nazwa miasta nie może być pusta.', groups: ['create', 'edit'] }
+            - Length: { max: 255, maxMessage: 'Nazwa może mieć maksymalnie {{ limit }} znaków.', groups: ['create', 'edit'] }
+        country:
+            - NotBlank: { message: 'Wybierz kraj.', groups: ['create', 'edit'] }
+            - Choice: { choices: ['PL', 'DE', 'FR', 'ES', 'IT', 'GB', 'US'], message: 'Wybrano nieprawidłowy kraj.', groups: ['create', 'edit'] }
+        latitude:
+            - NotBlank: { message: 'Szerokość geograficzna jest wymagana.', groups: ['create', 'edit'] }
+            - Range: { min: -90, max: 90, notInRangeMessage: 'Szerokość musi być między {{ min }} a {{ max }}.', groups: ['create', 'edit'] }
+        longitude:
+            - NotBlank: { message: 'Długość geograficzna jest wymagana.', groups: ['create', 'edit'] }
+            - Range: { min: -180, max: 180, notInRangeMessage: 'Długość musi być między {{ min }} a {{ max }}.', groups: ['create', 'edit'] }
+
+App\Entity\Measurement:
+    properties:
+        location:
+            - NotBlank: { message: 'Wybierz lokalizację.', groups: ['create', 'edit'] }
+        date:
+            - NotBlank: { message: 'Data pomiaru jest wymagana.', groups: ['create', 'edit'] }
+        temperature:
+            - NotBlank: { message: 'Temperatura jest wymagana.', groups: ['create', 'edit'] }
+            - Range: { min: -100, max: 100, notInRangeMessage: 'Temperatura musi wynosić między {{ min }} a {{ max }} °C.', groups: ['create', 'edit'] }
+        wind_speed:
+            - NotBlank: { message: 'Prędkość wiatru jest wymagana.', groups: ['create', 'edit'] }
+            - PositiveOrZero: { message: 'Prędkość wiatru nie może być ujemna.', groups: ['create', 'edit'] }
+        humidity:
+            - NotBlank: { message: 'Wilgotność jest wymagana.', groups: ['create', 'edit'] }
+            - Range: { min: 0, max: 100, notInRangeMessage: 'Wilgotność musi wynosić od 0% do 100%.', groups: ['create', 'edit'] }
+        pressure:
+            - NotBlank: { message: 'Ciśnienie jest wymagane.', groups: ['create', 'edit'] }
+            - Positive: { message: 'Ciśnienie musi być wartością dodatnią.', groups: ['create', 'edit'] }
