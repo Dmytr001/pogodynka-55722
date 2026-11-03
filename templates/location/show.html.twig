@@ -32,7 +32,11 @@
 
     <a href="{{ path('app_location_index') }}">back to list</a>
 
-    <a href="{{ path('app_location_edit', {'id': location.id}) }}">edit</a>
+    {% if is_granted('ROLE_LOCATION_EDIT') %}
+        <a href="{{ path('app_location_edit', {'id': location.id}) }}">edit</a>
+    {% endif %}
 
-    {{ include('location/_delete_form.html.twig') }}
+    {% if is_granted('ROLE_LOCATION_DELETE') %}
+        {{ include('location/_delete_form.html.twig') }}
+    {% endif %}
 {% endblock %}

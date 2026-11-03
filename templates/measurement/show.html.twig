@@ -39,7 +39,12 @@
     </table>
 
     <a href="{{ path('app_measurement_index') }}">back to list</a>
-    <a href="{{ path('app_measurement_edit', {'id': measurement.id}) }}">edit</a>
 
-    {{ include('measurement/_delete_form.html.twig') }}
+    {% if is_granted('ROLE_MEASUREMENT_EDIT') %}
+        <a href="{{ path('app_measurement_edit', {'id': measurement.id}) }}">edit</a>
+    {% endif %}
+
+    {% if is_granted('ROLE_LOCATION_DELETE') %}
+        {{ include('measurement/_delete_form.html.twig') }}
+    {% endif %}
 {% endblock %}
