@@ -39,7 +39,7 @@ class WeatherCityCommand extends Command
             ['Date', 'Temperature', 'Wind speed', 'Humidity', 'Pressure'],
             array_map(fn($m) => [
                 $m->getDate()->format('Y-m-d'),
-                $m->getTemperature(),
+                $m->getCelsius(),
                 $m->getWindSpeed(),
                 $m->getHumidity(),
                 $m->getPressure(),

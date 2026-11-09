@@ -1,0 +1,13 @@
+{% autoescape false %}
+city,country,date,celsius,fahrenheit,wind_speed,humidity,pressure
+{% for m in measurements -%}
+{{ city -}}
+,{{- country -}}
+,{{- m.date|date('Y-m-d') -}}
+,{{- m.celsius -}}
+,{{- m.fahrenheit -}}
+,{{- m.windSpeed -}}
+,{{- m.humidity -}}
+,{{- m.pressure }}
+{% endfor %}
+{% endautoescape %}
